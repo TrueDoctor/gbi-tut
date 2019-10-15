@@ -1,0 +1,72 @@
+\def\tutdate{07.02.2018}
+
+\documentclass{beamer}
+\usepackage{../templates/beamerthemekit}
+%\usepackage{enumitem}
+\input{../assets/dependencies}
+\input{../assets/definitions}
+\input{../assets/slide-pre_input}
+	
+\def\tutTitle{Relationen, Altklausur}
+\begin{document}
+
+\selectlanguage{ngerman}
+
+%title page
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}
+\section{Relationen}
+Schon bekannte Eigenschaften von Relationen: \newline
+\begin{itemize}
+	\item transitiv ($\forall x, y, z \in M: (x,y) \in R \land (y, z) \in R \rightarrow (x,z) \in R$)
+	\item reflexiv ($\forall x \in M: \rightarrow (x,x) \in R$)
+	\item symmetrisch ($\forall x, y \in M: (x,y)  \rightarrow (y,x) \in R$)
+		\item Äquivalenzrelation ist reflexiv, transitiv und symmetrisch
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+
+Neue Eigenschaft: \newline
+\begin{itemize}
+	\item antisymmetrisch ($\forall x, y \in M: (x,y) \in R \land (y, x) \in R \rightarrow x = y$)
+	\item Halbordung ist reflexiv, transitiv und antisymmetrisch
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+
+Welche Eigenschaften sind hier erfüllt? \newline
+\begin{itemize}
+	\item $\subset$
+	\item $<$
+	\item $\leq$
+	\item Relation R auf $A^*$ mit v R w $\leftrightarrow \exists u: vu=w$
+\end{itemize}
+\end{frame}
+
+\section{Master-Theorem}
+\begin{frame}
+	\begin{block}{Auflösung des Mastertheorem}
+	\begin{description}
+		\item[Fall 1:] Wenn $f \in \okalk(n^{\log_b a -\epsilon})$ für ein
+		$\epsilon>0$ ist, dann ist $T\in \Theta(n^{\log_b a})$.
+		\item[Fall 2:] Wenn $f \in \Theta(n^{\log_b a})$ ist, dann ist
+		$T\in \Theta(n^{\log_b a}\log n)$.
+		\item[Fall 3:] Wenn $f \in \Omega(n^{\log_b a +\epsilon})$ für ein
+		$\epsilon>0$ ist, und wenn es eine Konstante $d$ gibt mit $0<d<1$, so
+		dass für alle hinreichend großen $n$ gilt $af(n/b)\leq d f$, dann
+		ist $T\in \Theta(f)$.
+	\end{description}
+\end{block}
+\end{frame}
+
+\begin{frame}{Pseudocode für Mergesort}
+\includegraphics[scale=0.5]{Pseudo.png}
+\end{frame}
+\input{../assets/slide-post_new}
+
+\end{document}

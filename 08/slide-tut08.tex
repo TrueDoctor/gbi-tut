@@ -1,0 +1,376 @@
+\def\tutdate{06.12.2018}
+
+\documentclass[handout]{beamer}
+\usepackage{../templates/beamerthemekitwide}
+%\usepackage{enumitem}
+\input{../assets/dependencies}
+\input{../assets/definitions}
+\input{../assets/slide-pre_input}
+	
+\def\tutTitle{Prädikatenlogik}
+\begin{document}
+
+\selectlanguage{ngerman}
+
+%title page
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\section{Hinweise}
+
+\begin{frame} {MIMA-Simulator}
+https://github.com/weisJ/Mima
+\end{frame}
+
+\section{Prädikatenlogik}
+\begin{frame}{Grundlagen zu Prädikatenlogik}
+	Prädikatenlogik (PL) \ip \markBlue{erweitert} Aussagenlogik durch Ergänzen von ``Prädikaten'', einer Art von Funktionen, die Wahrheitswerte zurückgeben.
+
+	Alphabet der Prädikatenlogik:
+	
+	\begin{itemize}
+		\pitem $\lnot, \land, \lor, \rightarrow, \leftrightarrow, (, )$, also Alphabet der Aussagenlogik.
+		\pitem $\forall$ Allquantor \ip ($\forall x$ heißt ``für alle $x$ gilt...'')
+		\pitem $\exists$ Existenzquantor \ip ($\exists x$ heißt ``es existiert min. ein $x$... für das gilt...'')
+		\pitem $x,y,z,x_i \in Var_{PL}$ Variablen
+		\pitem $c, d, c_i \in Const_{PL}$ Konstanten
+		\pitem $f, g, h, f_i \in Fun_{PL}$ Funktionen 
+		\pitem $R, S, R_i \in Rel_{PL}$ Relationen (funktionieren ähnlich wie Funktionen)
+		\pitem $\objequiv$ Objektgleichheit
+		\pitem $,$ Komma
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Gliederung der Prädikatenlogik}
+	\begin{block}{Terme}
+		Ein Term ist ein Element aus der Sprache über $A_{Ter} := \{\markBlue{(}, \markBlue{)}, \markBlue{,}\} \cup Var_{PL} \cup Const_{PL} \cup Fun_{PL}$.
+	\end{block}
+	
+	\begin{block}{Atomare Formeln}
+		Atomare Formeln sind zum Beispiel
+		\begin{itemize}
+			\pitem Objektgleichheiten $f_1 \objequiv f_2$
+			\pitem Relation von Termen $R(t_1, t_2, ...)$
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Stelligkeit einer Funktion}
+		Die Stelligkeit $ar(f) \in \N_+$ einer Funktion gibt die Anzahl der Parameter von $f$ an. \ip (Analog Stelligkeit von Relationen $ar(R)$)
+	\end{block}
+	
+	%\bp
+\end{frame}
+
+\begin{frame}{Verständnis von Termen, Atomaren Formeln, Stelligkeit}
+\begin{itemize}
+	\item Woraus kann ein Term bestehen? \pause
+	\item[$\rightarrow$] Aus Klammern $\markBlue{(}, \markBlue{)}$, Kommas $\markBlue{,}$, Variablen, Konstanten, Funktionen.\pause
+	\item Was davon sind atomare Formeln: $R(x) \land S(f(x, c))$, $R(x, g(c, f(y, x))$?\pause
+	\item[$\rightarrow$] Nein, ja.\pause
+	\item Was sind die Stelligkeiten folgender Funktionen: $f(a, b, c), g(a), h(a, b)$? \pause \item[$\rightarrow$] $3,1,2$.
+\end{itemize}	
+\end{frame}
+
+\begin{frame}{Grammatik der Prädikatenlogik}
+	Prädikatenlogische Formeln werden durch die Grammatik $G := (N_{Ter}, A_{Ter}, T, P_{Ter})$ erzeugt mit:
+	
+	\bp
+	
+	\begin{itemize}
+		\pitem $m+1$ Nichtterminalsymbolen $N_{Ter} := \{T\} \cup \{L_i | i \in \N_+ \text{ und } i \leq m \}$ ($m = $ Maximale Stelligkeit von Funktionen)
+		\pitem Terminalsymbolen: Alphabet, aus dem Terme erzeugbar sind
+		%\pitem Startsymbol $T$
+		\pitem Produktionen
+		\begin{alignat*}{2}
+		L_{i+1} &\to L_i , T &\qquad& \text{für jedes } i\in\N_+\text{ mit } i<m   \\
+		L_1  &\to T \\ % ACHTUNG Komma ist hier ein Terminalsymbol, kein Trennsymbol
+		T &\to c_i && \text{für jedes } c_i\in Const_{PL}\\
+		T &\to x_i && \text{für jedes } x_i\in Var_{PL}\\
+		T &\to f_i(L_{ar(f_i)} ) && \text{für jedes } f_i\in Fun_{PL}
+		\end{alignat*}
+	\end{itemize}
+
+	\bp
+	
+	Beispiel: Seien Funktionen $f,g$ mit $ar(f) = 2, ar(g) = 1$, Konstante $c$ und Variablen $x,y$ gegeben. Was kann man damit machen?
+\end{frame}
+
+\begin{frame}{Grammatik der Prädikatenlogik}
+	
+	
+	\begin{columns}
+		\begin{column}{0.6\textwidth}
+			Beispiel: Seien Funktionen $f,g$ mit $ar(f) = 2, ar(g) = 1$, Konstante $c$ und Variablen $x,y$ gegeben. Was kann man damit machen?\vspace{.2cm}
+			
+			\bp
+			
+			Dann: 
+			\begin{itemize}
+				\item $N_{Ter}=\{ T, L_1, L_2 \}$
+				\item $\begin{aligned}[t]
+				P_{Ter} = \{  L_2 & \to L_1 , T \\% ACHTUNG Komma ist hier ein Terminalsymbol, kein Trennsymbol
+				L_1 & \to T  \\
+				T   & \to c \\
+				T   & \to x \\
+				T   & \to y \\
+				T   & \to g ( L_1 ) \\
+				T   & \to f ( L_2 ) \}
+				\end{aligned}
+				$
+			\end{itemize}
+		\end{column}
+		
+		\begin{column}{0.4\textwidth}
+			\bp
+			
+			\begin{taskblock}{Aufgabe zu Grammatiken und Prädikatenlogik}
+				Welche dieser Formeln entsprechen dieser Grammatik?
+				\vspace{.2cm}
+				\begin{itemize}
+					\pitem $f(c, g(x))$
+					\pitem $f(x, y, c)$
+					\pitem $g(f(c, c))$
+					\pitem $g(g(f(g(x), g(f(c, c))))$
+					\pitem $g(c, f)c)$
+				\end{itemize}
+			
+				\ip Bilde die Ableitungsbäume zu den korrekten Formeln.
+			\end{taskblock}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Bindungsstärken}
+	\begin{block}{Bindungsstärke}
+		Verschiedene Operanden ``binden'' stärker als andere. \ip Wenn ein Operand stärker als die umliegenden Operanden bindet, tritt derselbe Effekt auf, wie wenn Klammerung geschehen würde.
+	\end{block}
+
+	\bp
+	
+	Bindungsstärken absteigend:
+	\begin{itemize}
+		\ip \item $\forall / \exists\ip,\lnot\ip,\land\ip,\lor\ip,\rightarrow/\leftarrow\ip,\leftrightarrow$
+	\end{itemize}
+
+	\bp
+	
+	Finde äquivalente Formeln, die mit möglichst wenig Klammern auskommen:
+	\begin{itemize}
+		\pitem $\exists x \forall y (R(f(x), g(x)) \lor \forall z R(c, x)$ %TODO finish
+	\end{itemize}
+
+\end{frame}
+% TODO ich war hier
+\begin{frame}{Quantoren}
+\begin{itemize}
+	\item $\forall x p(x)$ heißt\ip: für alle $x \in D$ gilt die Aussage $p(x)$.
+	\pitem $\exists x p(x)$ heißt\ip: für (mindestens) ein $x \in D$ gilt die Aussage $p(x)$.
+	\pitem Gilt $\forall x \exists y \quad p(x,y) = \exists y \forall x \quad p(x,y)$?
+	\begin{itemize}
+		\pause\item Zum Beispiel $p(x,y) := $``Person $x$ ist mit Person $y$ verheiratet.''
+		\pause\item Also:
+		\begin{itemize}
+			\pitem $\forall x \exists y \quad p(x,y) = $ Für jede Person $x$ gibt es eine Person $y$, mit der $x$ verheiratet ist.
+			\pitem $\exists y \forall x \quad p(x,y) = $ Es gibt eine Person $y$, sodass für alle Personen $x$ gilt, dass $x$ mit $y$ verheiratet ist.
+		\end{itemize}
+		\pitem Eher nicht. Reihenfolge ist also wichtig!
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Bindungsbereich von Quantoren}
+	Quantoren binden Variablen nur zu der zugehörigen Teilformel.
+	
+	\bp
+	
+	\begin{itemize}
+		\item Zum Beispiel: $p(x) \land \markBlue{\forall x \exists y} \markGreen{(p(x) \land q(x,y,z)} \rightarrow r(x) $
+		\pitem Welcher Teil der Formel muss für alle $x$ gelten? Welcher für $y$?
+		\pitem Variablen, die nicht im Wirkungsbereich eines Quantors liegen, nennt man \markGreen{frei}.
+	\end{itemize}
+
+	\bp Überschattung ist möglich, durch Quantoren definierte Variablen beziehen sich immer auf den \markBlue{nächsten} Quantor.
+	\begin{itemize}
+		\pitem Ist $\forall x (p(x) \land \forall x (\lnot p(x))))$ erfüllbar?
+		\pause\item Ja: $\forall x (p(x) \land \forall \hat{x} (\lnot p(\hat{x}))))$ 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Bindungsbereich von Quantoren}
+	Substitution ist möglich. Dabei wird eine \markBlue{freie} Variable durch einen Term ersetzt, die Substitution wird mit $\sigma[a/b]$ bezeichnet, wobei $a$ durch $b$ ersetzt wird.
+	
+	\vertspace
+	
+	%TODO alternative Schreibweise für Substitution: \sigma_{x/y}
+	
+	\bp
+	
+	Führe die folgenden Substitutionen durch:
+	\begin{itemize}
+		\item<1-> \(\sigma[x/5] (p(x) \lor q(x,y))\)
+		\item<4-> \(= p(5) \lor q(5,y)\)
+		\item<2-> \(\sigma[x/5] (p(x) \lor \forall x (q(x,y))\)
+		\item<5-> \(= p(5) \lor \forall x (q(x,y))\)
+		\item<3-> \(\sigma[x/y, y/x, z/f(z)] (p(z) \land q(x,y))\)
+		\item<6-> \(= p(f(z)) \land q(y,x)\)
+	\end{itemize}
+
+	\vertspace
+	
+	\bp
+	
+	Welche der Variablen sind gebunden (und durch welche Quantoren), welche sind frei? 
+	\begin{itemize}
+		\pitem $p(x) \rightarrow \forall x \exists y (p(x) \land q(y,z) \leftrightarrow \forall z (q(x,z)))$
+		\pitem $\forall y(p(f(x,y))) \lor \exists z(q(z,f(y,z)))$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Kollision}
+Eine Kollision liegt vor, wenn eine freie Variable durch eine Substitution gebunden wird. \pause \newline
+Beispiel: $\sigma[z/x] (\forall x (p(x, z)))$ \pause \newline
+Sind folgende Substitutionen kollisionsfrei?
+\begin{itemize}
+	\item $\sigma[x/y, y/f(x,z)](\forall x(p(x) \rightarrow q(x,y)) \rightarrow p(x))$
+	\item $\sigma[x/g(z), y/x, z/y](\forall z(p(z) \land \forall x(q(x,y) \land \exists y (p(y)))))$
+	\item $\sigma[y/z, z/f(z)](q(y,z) \leftrightarrow \exists y(p(y)))$
+	\pitem Nur 3 ist kollisionsfrei
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Semantik von prädikatenlogischen Formeln}
+	Um prädikatenlogische Formeln zu interpretieren, brauchen wir einige neue Mengen:
+	
+	\begin{itemize}
+		\pitem Interpretation $(D, I)$\ip, bestehend aus...
+		\begin{itemize}
+			\pitem Universum $D \neq \emptyset$ mit...
+			\begin{itemize}
+				\pitem $I(c_i) \in D$ für $c_i \in Const_{PL}$
+				\pitem $I(f_i) : D^{ar(f_i)} \rightarrow D$ für $f_i \in Fun_{PL}$
+				\pitem $I(R_i) \subseteq D^{ar(R_i)}$ für $R_i \in Rel_{PL}$
+				\pitem $I$ weißt also den Komponenten Bedeutungen zu, ``definiert diese''
+			\end{itemize}
+			
+			\pitem Variablenbelegung $\sigma : Var_{PL} \rightarrow D$, z.B. $\sigma(x) := 3, \sigma(y) := 11$
+			\begin{itemize}
+				\pitem $\sigma$ definiert also Variablenwerte
+			\end{itemize}
+		\end{itemize}
+		
+		\bp
+		
+		\item Damit können wir prädikatenlogische Formeln definieren!
+	\end{itemize}
+	
+	\p
+	
+	\begin{block}{$\pval$}
+		Die Funktion $\pval : L_{Ter} \cup L_{For} \rightarrow D \cup \B$ weißt einer prädikatenlogischen Formel eine Bedeutung 
+		(Wahrheitsgehalt für Formeln und Element des Universums für Terme) zu.
+	\end{block}
+\end{frame}
+
+
+\begin{frame}{Beispiel zur Semantik}
+	Unterschied zwischen $\pval$ und $I$? \pause $I$ weist Einzelteilen (Konstanten, Funktionen, Relationen) eine Bedeutung zu und $\pval$ einer ganzen Formel.\pause\vertspace
+	
+	Beispiel:\vertspace\ip
+	
+	Sei $D := \N_0, I(c) := 10, ar(f) := 2, ar(p) := 1, ar(q) := 2, \sigma(x) := 7$.\ip
+	
+	Sei $I(f) : \N_0^2 \rightarrow \N_0, (x,y) \mapsto x-y$.\ip
+	
+	Sei $ar(R) := 2, I(R) := \{(x,y) | x \leq y\}$.\ip
+	
+	Sei $I(p(x)) = w :\Leftrightarrow x \geq 5, I(q(x,y)) = w :\Leftrightarrow x \geq y$.
+\end{frame}
+
+\begin{frame}{Beispiel zur Semantik}
+	
+	Sei $D := \N_0, I(c) := 10, ar(f) := 2, ar(p) := 1, ar(q) := 2, \sigma(x) := 7$.
+	
+	Sei $I(f) : \N_0^2 \rightarrow \N_0, (x,y) \mapsto x-y$.
+	
+	Sei $ar(R) := 2, I(R) := \{(x,y) | x \leq y\}$.
+	
+	Sei $I(p(x)) = w :\Leftrightarrow x \geq 5, I(q(x,y)) = w :\Leftrightarrow x \geq y$.
+	
+	\begin{itemize}
+		\item $T_1 := p(x) \rightarrow \exists y (q(y,x) \land p(y))$, was ist $\pval(T_1)$?
+		
+		\pause
+		\begin{itemize}
+			\item Wähle $y = 8 \in \N_0$. \ip Dann: $I(q(8,7)) = w\ip, I(p(8)) = w$\ip, also $\pval(\exists y (q(y,x) \land p(y))) = w$\ip, und $\pval(T_1) = w$.
+		\end{itemize}
+		
+		\pause
+		
+		\item $T_2 := p(x) \rightarrow \exists y (q(f(c,y), x) \land p(y))$, was ist $\pval(T_2)$?
+		
+		\pause
+		\begin{itemize}
+			\item $\pval(p(x)) = w$
+			\ip\item $\pval(q(f(c,y), x)) \ip = \pval(q(f(10,y), x))\ip = \pval(q(10-y, 7))\ip = w$ für $y \in \{0,1,2,3\}$.
+			\ip\item $\pval(p(y)) = w$ für $y \geq 5$.
+			\ip\item Also: $\pval(T_2) = f$.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Aufgaben zu Prädikatenlogik}
+	\begin{taskblock}{Aufgaben zu Prädikatenlogik}
+		Gegeben sind folgende Prädikate:
+		\begin{itemize}
+			\item $Vater(x,y) := $ wahr, gdw. $x$ Vater von $y$ ist, analog $Mutter(x,y)$.
+			\item $Männlich(x) := $ wahr, gdw. $x$ männlich ist, analog $Weiblich(x)$.
+			\item $Verheiratet(x,y) := $ wahr, gdw. $x$ und $y$ verheiratet sind.
+		\end{itemize}
+	
+	
+		Drücke die folgenden Aussagen mit prädikatenlogischen Formeln aus:
+		
+		\begin{itemize}
+			\pitem Jede männliche Person hat eine Mutter.
+			\begin{itemize}
+				\pause\item $\forall x \exists y (Männlich(x) \rightarrow Mutter(y,x))$
+				\pause\item Kann eine Person jetzt auch mehr als eine Mutter haben? \pause Widerspricht das der ursprünglichen Aussage?
+			\end{itemize}
+			\pitem Jeder Mann hat Kinder (plural!).
+			\begin{itemize}
+				\pause\item $\forall x \exists y \exists z (Männlich(x) \rightarrow ( Vater(x,y) \land Vater(x,z) \land \lnot (y \objequiv z)))$
+			\end{itemize}
+		\end{itemize}
+	\end{taskblock}
+\end{frame}
+
+\begin{frame}{Aufgaben zu Prädikatenlogik}
+	\begin{taskblock}{Aufgaben zu Prädikatenlogik}
+		Gegeben sind folgende Prädikate:
+		\begin{itemize}
+			\item $Vater(x,y) := $ wahr, gdw. $x$ Vater von $y$ ist, analog $Mutter(x,y)$.
+			\item $Männlich(x) := $ wahr, gdw. $x$ männlich ist, analog $Weiblich(x)$.
+			\item $Verheiratet(x,y) := $ wahr, gdw. $x$ und $y$ verheiratet sind.
+		\end{itemize}
+		
+		
+		Drücke die folgenden Aussagen mit prädikatenlogischen Formeln aus:
+		
+		\begin{itemize}
+			\pitem Jede Frau ist mit höchstens einem Mann verheiratet.
+			\begin{itemize}
+				\pause\item $\forall x \forall y \forall z (Weiblich(x) \land((Männlich(y) \land Männlich(z) \land \lnot (y \objequiv z) \land Verheiratet(x,y)) \rightarrow \lnot Verheiratet(x,z)))$
+			\end{itemize}
+			\pitem Wer männlich ist, ist nicht weiblich und umgekehrt.
+			\begin{itemize}
+				\pause\item $\forall x (Männlich(x) \rightarrow \lnot Weiblich(x) \land Weiblich(x) \rightarrow \lnot Männlich(x))$
+			\end{itemize}
+		\end{itemize}
+	\end{taskblock}
+\end{frame}
+
+\input{../assets/slide-post_new}
+
+\end{document}
