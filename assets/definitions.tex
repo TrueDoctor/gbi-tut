@@ -1,0 +1,56 @@
+
+\newcommand{\markBlue}[1]{\textcolor{kit-blue100}{#1}}
+\newcommand{\markGreen}[1]{\textcolor{kit-green100}{#1}}
+\newcommand{\vertspace}{\vspace{.2cm}}
+
+%\newcommand{\#}{\markBlue{#1}}
+
+%\newcommand{\pitem}{\pause\item}
+\newcommand{\p}{\pause}
+
+% -- MATH MACROS
+\newcommand{\thistheoremname}{}
+\newcommand{\G}{\mathbb{Z}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\mi}{\mathrm{i}}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\okalk}{\mathscr{O}}
+
+
+\newenvironment<>{taskblock}[1]{%
+	\setbeamercolor{block title}{fg=kit-orange15,bg=kit-orange100}
+	\setbeamercolor{block body}{fg=black,bg=kit-orange30}%
+	\begin{block}#2{#1}}{\end{block}}
+
+\setbeamertemplate{enumerate items}[default]
+
+% Aussagenlogik Symbole
+\newcommand{\W}{w}
+\renewcommand{\F}{f}
+
+% Kodierung
+\newcommand{\frepr}{\textbf{repr}}
+\newcommand{\fRepr}{\textbf{Repr}}
+\newcommand{\fZkpl}{\textbf{Zkpl}}
+\newcommand{\fbin}{\textbf{bin}}
+\newcommand{\fdiv}{\textbf{ div }}
+\newcommand{\fmod}{\textbf{ mod }}
+
+% Speicherabbild
+\newenvironment{memory}{\begin{tabular}{r | l}Adresse&Wert\\\hline\hline}{\end{tabular}}
+\newcommand{\memrow}[2]{#1 & #2 \\\hline}
+
+% Praedikatenlogik
+\newcommand{\objequiv}{\stackrel{\cdot}{=}}
+\newcommand{\pval}{val_{D,I,\beta}}
+
+% Neue Befehle
+\newcommand{\ip}{\pause} % inline pause, für mitten im satz
+\newcommand{\pitem}{\pause\item} % für aufzählungen
+\newcommand{\bp}{\pause} % block pause, für zwischen blöcken
