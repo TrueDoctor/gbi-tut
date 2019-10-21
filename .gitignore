@@ -25,6 +25,7 @@
 *.mtc1
 *.nav
 *.out
+*.pdf
 *.ps
 *.run.xml
 *.snm
