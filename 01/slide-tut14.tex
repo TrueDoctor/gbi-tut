@@ -165,8 +165,8 @@
 		\begin{itemize}
 			\item $A := \{a, b, c\}$  . $|A| = 3$
 			\item $B := \{c, d\}$  . $|B| = 2$
-			\item Was ist $|\{1, 2, 3, 2\}|$?   $3$!
-			\item Was ist $|\emptyset|?$   $0$
+			\item Was ist $|\{1, 2, 3, 2\}|$? \pause $3$!
+			\item Was ist $|\emptyset|?$ \pause $0$
 		\end{itemize}
 	\end{itemize}
 	
@@ -178,7 +178,7 @@
 	
 	 
 	
-	Was ist $|\{\emptyset\}|$?   1!   $\{\emptyset\}$ enthält eine leere Menge, die selbst ein Element ist.
+	Was ist $|\{\emptyset\}|$? \pause  1!   $\{\emptyset\}$ enthält eine leere Menge, die selbst ein Element ist.
 \end{frame}
 
 
@@ -191,7 +191,7 @@
 		\begin{itemize}
 			\item Beispiele:   $B \subseteq A$  , sogar $B \subset A$.\\   $C \subseteq B$   und $B \subseteq C$  , aber $C \not\subset B$ und $B \not\subset C$.
 		\end{itemize}
-		\item Schnittmenge  : $A \cap B$   $ = \{b, c\}$.  \\ $A \cap B$ enthält \emph{genau} die Elemente, die in $A$ \emph{und} in $B$ sind.%TODO erkläre "genau", siehe LA. Wieso übrigens kein := ?
+		\item Schnittmenge  : $A \cap B$   $ = \{b, c\}$.  \\ $A \cap B$ enthält \emph{genau} die Elemente, die in $A$ \emph{und} in $B$ sind.
 		\item Vereinigungsmenge  : $A \cup D$   $ = \{a, b, c, d\}$.  \\ $A \cup B$ enthält \emph{genau} die Elemente, die in $A$ \emph{oder} in $B$ sind.
 		\item Mengendifferenz:   $A \setminus B$   $ = \{a\}$  , also alle Elemente in $A$, die nicht in $B$ sind.  
 	\end{itemize}
@@ -206,6 +206,14 @@
 			\item $ A \cup (B \cup C) = (A \cup B) \cup C $ (analog für Durchschnitt)
 			\item $ A \cup (B \cap C) = (A \cup B) \cap (A \cup C) $ (analog Vertauschen von $\cup$ und $\cap$)
 			\item $|A \cup B| = |A| + |B| - |A \cap B|$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Aufgabe Mengen}
+	Zeige die Äquivalenz folgender Aussagen:
+	\begin{itemize}
+		\item $A \backslash B = \{\}$
+		\item $A \subseteq B$
 	\end{itemize}
 \end{frame}
 
@@ -225,9 +233,9 @@
 		\item $\emptyset \in 2^M$
 		\item Konkretes Beispiel:   Was ist $2^M$ mit $M = \{0, 1\}$?
 		\begin{itemize}
-			\item Natürlich $\emptyset \in 2^M$ und $\{0, 1\} \in 2^M$.
-			\item $\{0\} \in 2^M$   und $\{1\} \in 2^M$.
-			\item Weitere?   Nein, diese vier Mengen sind alle möglichen Teilmengen.
+			\pitem Natürlich $\emptyset \in 2^M$ und $\{0, 1\} \in 2^M$.
+			\pitem $\{0\} \in 2^M$   und $\{1\} \in 2^M$.
+			\item Weitere? \pause  Nein, diese vier Mengen sind alle möglichen Teilmengen.
 			\item $\Rightarrow$ $2^M = \{\{\}, \{0\}, \{1\}, \{0, 1\}\}$.
 		\end{itemize}
 	\end{itemize}
@@ -239,11 +247,11 @@
 	Was ist $2^{2^M}$?
 	
 	\begin{itemize}
-		\item Also $2^{\{\{\}, \{0\}, \{1\}, \{0, 1\}\}}$.
-		\item Natürlich $\emptyset \in 2^M$ und $2^M = \{\{\}, \{0\}, \{1\}, \{0, 1\}\} \in 2^{2^M}$.
+		\pitem Also $2^{\{\{\}, \{0\}, \{1\}, \{0, 1\}\}}$.
+		\pitem Natürlich $\emptyset \in 2^M$ und $2^M = \{\{\}, \{0\}, \{1\}, \{0, 1\}\} \in 2^{2^M}$.
 	\end{itemize}
 	
-	 
+	\pause
 	
 	$2^{2^M}  
 	= 
@@ -505,7 +513,7 @@
 	
 	$f : A \rightarrow B, a \mapsto a^2$  , also Quadratfunktion.
 	
-	  Ist diese Funktion injektiv oder surjektiv?   
+	  Ist diese Funktion injektiv oder surjektiv? \pause  
 	
 	\begin{itemize}
 		\item Nicht injektiv, da z.B. $f(1) = f(-1)$  , also $(1, 1) \in f$ und $(-1, 1) \in f$. 
@@ -513,6 +521,14 @@
 	
 	\end{itemize}
 	
+\end{frame}
+
+\begin{frame}{Aufgabe Funktionen}
+	Betrachte $f:A \rightarrow A$ mit $|A| < \infty$. Zeige:
+	\begin{itemize}
+		\item $f$ injektiv $\iff$ $f$ surjektiv
+	\end{itemize}
+	Stimmt das immer noch, wenn $|A|$ nicht mehr endlich?
 \end{frame}
 
 \input{../assets/slide-post_new}
