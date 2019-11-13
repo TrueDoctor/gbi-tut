@@ -1,4 +1,4 @@
-\def\tutdate{01.11.2018}
+\def\tutdate{30.10.2019}
 
 \documentclass[handout]{beamer}
 \usepackage{../templates/beamerthemekit}
@@ -24,7 +24,7 @@
 		\item Blätter vollständig nutzen, nicht ein Blatt pro Aufgabe
 		\item Aufgabenblatt nicht mit abgeben
 		\item Nur antworten, was gefragt wurde (keine falschen oder nicht gefragten Lösungswege)
-		\item "geben Sie an" erfordert keinen Beweis
+		\item "`geben Sie an"' erfordert keinen Beweis
 		\item Lieber sprachlich erklären, wenn man Probleme mit formalen Beweisen hat (falls nicht explizit einer gefordert ist)
 		\item Genau schreiben, warum die Behauptung aus dem folgt, was ihr gerade bewiesen habt
 		\item Unterscheidet Element und Teilmenge: $x \in A$ oder $\{x\} \subset A$
@@ -70,7 +70,12 @@
 		Es seinen A,B und C Mengen. Beweisen oder widerlegen Sie:
 		$A \backslash (B \backslash C) = (A \backslash B)\backslash C$
 	\end{block}
-	\pause
+\end{frame}
+\begin{frame}{Mengen}
+	\begin{block}{Aufgabe aus WS16/17}
+		Es seinen A,B und C Mengen. Beweisen oder widerlegen Sie:
+		$A \backslash (B \backslash C) = (A \backslash B)\backslash C$
+	\end{block}
 	\begin{block}{Widerlegung durch Gegenbeispiel}
 		Seien $A = \{1,2,3\}, B = \{3,4,5\}$ und $C = \{3\}$.
 		Dann ist $\{1,2,3\} \backslash (\{3,4,5\} \backslash \{3\}) = \{1,2,3\} \backslash \{4,5\} = \{1,2,3\} \neq$
@@ -92,8 +97,8 @@
 				\pause
 			\end{itemize}
 			\item ``$\supseteq$'': $x\in(A\cup B)\cap(A\cup C)$. Dann liegt x in $(A\cup B)$ und $(A\cup C)$.
-			Also liegt x entweder in A oder in (B und C). Folglich gilt 
-			$x\in A\cup(A\cap C)$.
+			Also liegt x in A oder in (B und C). Folglich gilt 
+			$x\in A\cup(B\cap C)$.
 			\pause\item Insgesamt ist also $A\cup(B\cap C) = (A\cup B)\cap(A\cup C)$.
 		\end{itemize}
 	\end{block}
@@ -322,7 +327,7 @@
 	\begin{itemize}
 		\pitem Das wars erst mal zu formalen Sprachen.
 		\pitem Heute ist Donnerstag.
-		\pitem Die Menge aller Männer dieser Welt ist disjunkt zur Menge aller Frauen dieser Welt.
+		\pitem Die Menge aller HM-Übungsblätter dieser Welt ist disjunkt zur Menge aller einfachen Übungsblätter dieser Welt.
 	\end{itemize}
 
 	\pause
