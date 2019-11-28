@@ -1,7 +1,7 @@
 \def\tutdate{06.11.2019}
 
-%\documentclass[handout]{beamer}
-\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\documentclass{beamer}
 \usepackage{../templates/beamerthemekit}
 %\usepackage{enumitem}
 \input{../assets/dependencies}
@@ -239,7 +239,7 @@
 	\end{block}
 
 	\begin{itemize}
-		\pitem Warum gilt $\epsilon \notin L^+$ bei formalen Sprache $L \subseteq A^* \backslash \{\epsilon\}$?
+		\pitem Warum gilt $\epsilon \notin L^+$ bei formalen Sprachen $L \subseteq A^* \backslash \{\epsilon\}$?
 		\pitem $L := \{a, b, c\}.  L^* \pause = \{\epsilon, a, aa, ab, ac, aaa, aab, \dots, b, ba, bb, \dots \}$
 		\pitem $L := \{aa, bc\}.  L^* \pause = \{\epsilon, aa, bc, aa\cdot aa, aa\cdot bc, bc \cdot aa, bc \cdot bc, aa \cdot aa \cdot aa, \dots \}$
 	\end{itemize}
@@ -253,7 +253,7 @@
 		\begin{itemize}
 			\pitem $B := \{\_,a,b,...,z,A,B,...,Z\}$
 			\pitem $C := B \cup \Z_9$
-			\pitem $L_2 \subseteq C \pause = (B \cdot C^*) \backslash \{if, class, while, ...\}$
+			\pitem $L_2 = (B \cdot C^*) \backslash \{if, class, while, ...\}$
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -286,10 +286,10 @@
 
 \begin{frame} {Übung 2}
 	\begin{itemize}
-		\item $L_1 = \{a\}*\{b\}*$
-		\item $L_2 = \{a, b\}*$
-		\item $L_3 = \{a\}* \cup \{b\}*$
-		\item $L_4 = (\{a\} \cup \{b\})*$
+		\item $L_1 = \{a\}^*\{b\}^*$
+		\item $L_2 = \{a, b\}^*$
+		\item $L_3 = \{a\}^* \cup \{b\}^*$
+		\item $L_4 = (\{a\} \cup \{b\})^*$
 		\item Welche Sprachen sind identisch? \pause $L_2$ und $L_4$
 	\end{itemize}
 \end{frame}
@@ -367,7 +367,7 @@
 	
 	\p Was ist der dezimale Zahlenwert der Binärzahl 1010? \p Diesmal Basis $k = 2$.
 	\begin{itemize}
-		\pitem $Num_{2}(1010) \p = 2 \cdot Num_2(101) + num_2(0) \p = 2 \cdot (2 \cdot Num_2(10) + num_2(1) + num_2(0) \p = 2 \cdot (2 \cdot (2 \cdot Num_2(1) + num_2(0) ) + num_2(1) ) + num_2(0) \p = 2 \cdot (2 \cdot (2 \cdot num_2(1) + num_2(0) ) + num_2(1) ) + num_2(0) \p = 2 \cdot ( 2 \cdot (2 \cdot 1 + 0) + 1) + 0) = 10$.
+            \pitem $Num_{2}(1010) \p = 2 \cdot Num_2(101) + num_2(0) \p = 2 \cdot (2 \cdot Num_2(10) + num_2(1) + num_2(0)) \p = 2 \cdot (2 \cdot (2 \cdot Num_2(1) + num_2(0) ) + num_2(1) ) + num_2(0) \p = 2 \cdot (2 \cdot (2 \cdot num_2(1) + num_2(0) ) + num_2(1) ) + num_2(0) \p = 2 \cdot ( 2 \cdot (2 \cdot 1 + 0) + 1) + 0) = 10$.
 	\end{itemize}
 	\p Yay!
 \end{frame}
