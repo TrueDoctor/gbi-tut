@@ -1,9 +1,9 @@
 \def\tutdate{25.11.2019}
-\def\tutTitle{Speicher, MIMA}
+\def\tutTitle{Speicher, MIMA, Maschinenbefehle}
 
 \documentclass[handout]{beamer}
 %\documentclass[]{beamer}
-\usepackage{../templates/beamerthemekitwide}
+\usepackage{../templates/beamerthemekit}
 %\usepackage{enumitem}
 \input{../assets/dependencies}
 \input{../assets/definitions}
@@ -18,13 +18,13 @@
 	\titlepage
 \end{frame}
 
-% Zur Anpassung: Dekommentiere folgende Zeilen, um weniger \pause zu haben
+% Zur Anpassung: Dokumentiere folgende Zeilen, um weniger \pause zu haben
 \renewcommand{\ip}{} % inline pause, für mitten im satz
 
-% Dekommentiere folgende Zeilen, um Stil besser an deine Folien anzupassen
-%\renewenvironment{taskblock}[1]{\textbf{Aufgabe: #1}\\}{}
-%\renewcommand{\markBlue}[1]{\textbf{#1}}
-%\renewcommand{\markGreen}[1]{\textbf{#1}}
+% Dekumentiere folgende Zeilen, um Stil besser an deine Folien anzupassen
+\renewenvironment{taskblock}[1]{\textbf{Aufgabe: #1}\\}{}
+\renewcommand{\markBlue}[1]{\textbf{#1}}
+\renewcommand{\markGreen}[1]{\textbf{#1}}
 
 \section{Hinweise}
 
@@ -114,7 +114,7 @@
 		$memwrite: Mem \times Adr \times Val \rightarrow Mem \text{ mit } (m, a,v) \mapsto m'$\\
 		Für $m'$ wird folgendes gefordert:
 		\begin{center}
-			$m(a') :=\begin{cases} 
+			$m'(a') :=\begin{cases} 
 			v& \text{ falls } a' = a\\
 			m(a') &\text{ falls } a' \neq a
 			\end{cases} $ 
@@ -125,9 +125,10 @@
 \begin{frame}{Eigenschaften von $memread$ und $memwrite$}
 	
 	\begin{block}{Eigenschaften (``Invarianten'')}
+        Sei $(m, a, a', v) \in Mem \times Adr \times Adr \times Val$ und $a \neq a'$:
 		\begin{itemize}
 			\pitem $memread(memwrite(m,a,v),a) = v$ \p (Also: An $a$ einen Wert $v$ zu schreiben und danach bei $a$ zu lesen gibt den Wert $v$ zurück \p $\Rightarrow$ Konsistente Datenhaltung)
-			\pitem $memread(memwrite(m, a', v'),a) = memread(m,a)$ \p (Also: Auslesen einer Speicherstelle ist unabhängig davon, was vorher an eine andere Adresse geschrieben wurde \p $\Rightarrow$ Unabhängige Datenhaltung)
+			\pitem $memread(memwrite(m, a', v),a) = memread(m,a)$, wenn \p (Also: Auslesen einer Speicherstelle ist unabhängig davon, was vorher an eine andere Adresse geschrieben wurde \p $\Rightarrow$ Unabhängige Datenhaltung)
 		\end{itemize}
 	\end{block}
 
@@ -333,9 +334,9 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 \begin{frame}{MIMA Befehle}
 	Eine MIMA-Maschine beherrscht folgende Maschinenbefehle:
 	
-	\vspace{.5cm}
+	\vspace{.1cm}
 	
-	\begin{tabular}{r | l p{5cm} }
+	\begin{tabular}{r | l p{5.2cm} }
 		Befehlssyntax & Formel & Bedeutung\\\hline\hline \ip
 		$LDC$ $const$ & $Akku \leftarrow const$ & Lade eine Konstate $const$ in den Akku \\\hline \ip
 		$LDV$ $adr$ & $Akku \leftarrow M(adr)$ & Lade einen Wert vom Speicher bei Adresse $adr$ in den Akku\\\hline\ip
@@ -350,10 +351,10 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 	
 	\vspace{.5cm}
 	
-	\begin{tabular}{r | l p{3cm} }
+	\begin{tabular}{r | l p{3.5cm} }
 		Befehlssyntax & Formel & Bedeutung\\\hline\hline \ip
 		$ADD$ $adr$ & $Akku \leftarrow Akku + M(adr)$ & Addiere den Wert bei $adr$ zum Akku dazu.\\\hline\ip
-		$``OP''$ $adr$ & $Akku ``OP'' M(adr)$ & Wende bitweise Operation auf Akku mit Wert bei $adr$ an. $Op \in \{AND, OR, XOR\}$.
+        $AND$/$OR$/$XOR$ $adr$ & $Akku \leftarrow Akku \diamond M(adr)$ & Wende bitweise Operation $\diamond$ auf Akku mit Wert bei $adr$ an.
 	\end{tabular}
 \end{frame}
 
@@ -366,7 +367,7 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 		Befehlssyntax & Bedeutung\\\hline\hline \ip
 		$NOT$ & Bitweise Invertierung aller Bits des Akku-Datenwortes\\\hline\ip
 		$RAR$ & Rotiere alle Akku-Bits eins nach rechts\\\hline\ip
-		$EQL$ $adr$ & Setze Akku auf $11\cdots11$, falls Wert bei $adr$ gleich Akku-Wert, setze Akku auf $00\cdots00$ sonst.\\\hline\ip
+		$EQL$ $adr$ & Setze Akku auf $11\cdots11$, falls Wert bei $adr$ gleich Akku-Wert, sonst setze Akku auf $00\cdots00$.\\\hline\ip
 		$JMP$ $adr$ & Springe zu Befehlsadresse $adr$\\\hline\ip
 		$JMN$ $adr$ & Springe zu Befehlsadresse $adr$, falls Akku negativ (also erstes Bit $=1$), sonst fahre normal fort.
 	\end{tabular}
@@ -395,27 +396,24 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 \end{frame}
 
 \begin{frame}{MIMA Befehle: Sichern und Laden}
-	\begin{tabular}{r | l p{5cm} }
-		Befehlssyntax & Formel & Bedeutung\\\hline\hline 
-		$LDC$ $const$ & $Akku \leftarrow const$ & Lade eine Konstate $const$ in den Akku \\\hline 
-		$LDV$ $adr$ & $Akku \leftarrow M(adr)$ & Lade einen Wert vom Speicher bei Adresse $adr$ in den Akku\\\hline
-		$STV$ $adr$ & $M(adr) \leftarrow Akku$ & Lade Speichere den Wert aus dem Akku im Speicher bei Adresse $adr$\\\hline
-	\end{tabular}
-
 	\bp 
 	\vspace{.5cm}
-	\markGreen{Beispielprogramm mit initialem Speicherabbild}
-	\vspace{.2cm}
+    \markGreen{Beispielprogramm (1)}
+	\vspace{.4cm}
 	
 	\begin{columns}
-		\begin{column}{0.25\textwidth}
-			LDC 5 \\ STV $a_1$ \\ LDC 7 \\ STV $a_2$ \\ $\vdots$
+        \begin{column}{0.06\textwidth}
+        \end{column}
+
+		\begin{column}{0.15\textwidth}
+			LDC 5 \\ STV $a_1$ \\ LDC 7 \\ STV $a_2$ \\ LDV $a_1$ \\ STV $a_3$ \\ HALT
 		\end{column}
-		\begin{column}{0.25\textwidth}
-			 $\vdots$ \\ LDV $a_1$ \\ STV $a_3$ \\ HALT
-		\end{column}
+
+        \vline
+        \begin{column}{0.06\textwidth}
+        \end{column}
 		
-		\begin{column}{0.5\textwidth}
+		\begin{column}{0.24\textwidth}
 			\begin{memory}
 				\memrow{$a_1$}{0}	
 				\memrow{$a_2$}{0}
@@ -423,33 +421,111 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 			\end{memory}
 		\end{column}
 	\end{columns}
+\end{frame}
 
-	%TODO Ergebnis
+\begin{frame}{MIMA Befehle: Sichern und Laden}
+	\bp 
+	\vspace{.5cm}
+    \markGreen{Beispielprogramm (1)}
+	\vspace{.4cm}
+	
+	\begin{columns}
+        \begin{column}{0.06\textwidth}
+        \end{column}
+
+		\begin{column}{0.15\textwidth}
+			LDC 5 \\ STV $a_1$ \\ LDC 7 \\ STV $a_2$ \\ LDV $a_1$ \\ STV $a_3$ \\ HALT
+		\end{column}
+
+        \vline
+        \begin{column}{0.06\textwidth}
+        \end{column}
+		
+		\begin{column}{0.24\textwidth}
+			\begin{memory}
+				\memrow{$a_1$}{0}	
+				\memrow{$a_2$}{0}
+				\memrow{$a_3$}{0}
+			\end{memory}
+		\end{column}
+		\begin{column}{0.02\textwidth}
+            $\rightarrow$
+		\end{column}
+		\begin{column}{0.3\textwidth}
+			\begin{memory}
+				\memrow{$a_1$}{5}	
+				\memrow{$a_2$}{7}
+				\memrow{$a_3$}{5}
+			\end{memory}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 % Laden und Speichern (indirekt)
-\begin{frame}{MIMA Befehle: Indirektes Sichern und Laden}
-	\begin{tabular}{r | l p{5cm} }
-		Befehlssyntax & Formel & Bedeutung\\\hline\hline 
-		$LDIV$ $adr$ & $Akku \leftarrow M(M(adr))$ & Lade einen Wert vom Speicher bei der Adresse, die bei $adr$ gespeichert ist, und lade den Wert in den Akku\\\hline
-		$STIV$ $adr$ & $M(M(adr)) \leftarrow Akku$ & Speichere den Wert im Akku bei der Adresse, die in $adr$ gespeichert ist.
-	\end{tabular}
-	
+\begin{frame}{MIMA Befehle: Indirekte Operationen}
 	\bp 
 	\vspace{.5cm}
-	\markGreen{Beispielprogramm mit initialem Speicherabbild}
-	\vspace{.2cm}
+    \markGreen{Beispielprogramm (2)}
+	\vspace{.4cm}
 	
 	\begin{columns}
-		\begin{column}{0.5\textwidth}
+        \begin{column}{0.06\textwidth}
+        \end{column}
+
+		\begin{column}{0.15\textwidth}
 			LDIV 4 \\ STV 5 \\ LDIV 5 \\ STIV 4 \\ HALT
 		\end{column}
+
+        \vline
+        \begin{column}{0.06\textwidth}
+        \end{column}
 		
-		\begin{column}{0.5\textwidth}
+		\begin{column}{0.24\textwidth}
 			\begin{memory}
 				\memrow{$4$}{$6$}	
 				\memrow{$5$}{$0$}
 				\memrow{$6$}{$7$}
+				\memrow{$7$}{$2$}
+			\end{memory}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+% Laden und Speichern (indirekt)
+\begin{frame}{MIMA Befehle: Indirekte Operationen}
+	\bp 
+	\vspace{.5cm}
+    \markGreen{Beispielprogramm (2)}
+	\vspace{.4cm}
+	
+	\begin{columns}
+        \begin{column}{0.06\textwidth}
+        \end{column}
+
+		\begin{column}{0.15\textwidth}
+			LDIV 4 \\ STV 5 \\ LDIV 5 \\ STIV 4 \\ HALT
+		\end{column}
+
+        \vline
+        \begin{column}{0.06\textwidth}
+        \end{column}
+		
+		\begin{column}{0.24\textwidth}
+			\begin{memory}
+				\memrow{$4$}{$6$}	
+				\memrow{$5$}{$0$}
+				\memrow{$6$}{$7$}
+				\memrow{$7$}{$2$}
+			\end{memory}
+		\end{column}
+		\begin{column}{0.02\textwidth}
+            $\rightarrow$
+		\end{column}
+		\begin{column}{0.3\textwidth}
+			\begin{memory}
+				\memrow{$4$}{$6$}	
+				\memrow{$5$}{$7$}
+				\memrow{$6$}{$2$}
 				\memrow{$7$}{$2$}
 			\end{memory}
 		\end{column}
@@ -472,6 +548,39 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 	\end{itemize}
 \end{frame}
 
+\begin{frame}{MIMA Befehle: Eins plus Eins}
+	\begin{tabular}{r | l p{5cm} }
+		Befehlssyntax & Formel & Bedeutung\\\hline\hline 
+		$ADD$ $adr$ & $Akku \leftarrow Akku + M(adr)$ & Addiere den Wert bei $adr$ zum Akku dazu.\\\hline
+		$``OP''$ $adr$ & $Akku ``OP'' M(adr)$ & Wende bitweise Operation auf Akku mit Wert bei $adr$ an. $Op \in \{AND, OR, XOR\}$.
+	\end{tabular}
+	
+	\bp 
+	\vspace{.2cm}
+    \markGreen{Beispielprogramm (3)}
+	\vspace{.2cm}
+	
+	\begin{columns}
+        \begin{column}{0.06\textwidth}
+        \end{column}
+
+		\begin{column}{0.15\textwidth}
+			LDC 5 \\ ADD 3 \\ AND 4 \\ STV 5 \\ LDC 12 \\ XOR 5 \\ HALT
+		\end{column}
+
+        \vline
+        \begin{column}{0.06\textwidth}
+        \end{column}
+		
+		\begin{column}{0.24\textwidth}
+			\begin{memory}
+				\memrow{$3$}{$3$}	
+				\memrow{$4$}{$8$}
+				\memrow{$5$}{$17$}
+			\end{memory}
+		\end{column}
+	\end{columns}
+\end{frame}
 
 \begin{frame}{MIMA Befehle: Eins plus Eins}
 	\begin{tabular}{r | l p{5cm} }
@@ -481,20 +590,39 @@ Speicher selbst speichert Befehle und Daten. \ip Speicherwerk besteht aus:
 	\end{tabular}
 	
 	\bp 
-	\vspace{.5cm}
-	\markGreen{Beispielprogramm mit initialem Speicherabbild}
+	\vspace{.2cm}
+    \markGreen{Beispielprogramm (3)}
 	\vspace{.2cm}
 	
 	\begin{columns}
-		\begin{column}{0.5\textwidth}
+        \begin{column}{0.06\textwidth}
+        \end{column}
+
+		\begin{column}{0.15\textwidth}
 			LDC 5 \\ ADD 3 \\ AND 4 \\ STV 5 \\ LDC 12 \\ XOR 5 \\ HALT
 		\end{column}
+
+        \vline
+        \begin{column}{0.02\textwidth}
+        \end{column}
 		
-		\begin{column}{0.5\textwidth}
+		\begin{column}{0.24\textwidth}
 			\begin{memory}
 				\memrow{$3$}{$3$}	
 				\memrow{$4$}{$8$}
 				\memrow{$5$}{$17$}
+			\end{memory}
+		\end{column}
+		\begin{column}{0.05\textwidth}
+            $Akku$ $=$ $8$
+            \vspace{.3cm}
+            $\rightarrow$
+		\end{column}
+		\begin{column}{0.3\textwidth}
+			\begin{memory}
+				\memrow{$3$}{$3$}	
+				\memrow{$4$}{$8$}
+				\memrow{$5$}{$8$}
 			\end{memory}
 		\end{column}
 	\end{columns}
