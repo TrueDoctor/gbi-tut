@@ -1,7 +1,8 @@
-\def\tutdate{22.11.2018}
+\def\tutdate{25.11.2019}
 \def\tutTitle{Speicher, MIMA}
 
 \documentclass[handout]{beamer}
+%\documentclass[]{beamer}
 \usepackage{../templates/beamerthemekitwide}
 %\usepackage{enumitem}
 \input{../assets/dependencies}
@@ -32,10 +33,8 @@
 	\item Reguläre Ausdrücke:
 	\item Nur $\{$, $\}$, (, ), $*$, $\cup$ und $\cdot$ dürfen verwendet werden
 	\pitem $\{a\} \cdot \{b\} = \{ab\}$
-	\pitem Unterschied zwischen $\{a\}* \cup \{b\}*$ und $\{a\}* \cdot \{b\}*$
-	\pitem Keine äußeren Klammern
-	\pitem Berechnungen mit Num, Repr haben keinen Rechenweg verlangt
-	\pitem $|\epsilon| < 8$
+	\pitem Unterschied zwischen $\{a\}^* \cup \{b\}^*$ und $\{a\}^* \cdot \{b\}^*$
+    \pitem $\{\}^* = \{\epsilon\}$
 \end{itemize}
 \end{frame}
 
