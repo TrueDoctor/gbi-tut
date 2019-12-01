@@ -1,4 +1,4 @@
-path="tut-32-gbi.csv"
+path="$1"
 
 git filter-branch --tree-filter "rm -rf $path" --prune-empty HEAD
 git for-each-ref --format="%(refname)" refs/original/ | xargs -n 1 git update-ref -d
