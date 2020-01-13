@@ -1,13 +1,12 @@
-\def\tutdate{06.12.2018}
+\def\tutdate{09.12.2019}
 
-\documentclass[handout]{beamer}
-\usepackage{../templates/beamerthemekitwide}
-%\usepackage{enumitem}
+\documentclass[]{beamer}
+\usepackage{../templates/beamerthemekit}
 \input{../assets/dependencies}
 \input{../assets/definitions}
 \input{../assets/slide-pre_input}
 	
-\def\tutTitle{Prädikatenlogik}
+\def\tutTitle{Praedikatenlogik}
 \begin{document}
 
 \selectlanguage{ngerman}
@@ -23,11 +22,11 @@
 https://github.com/weisJ/Mima
 \end{frame}
 
-\section{Prädikatenlogik}
-\begin{frame}{Grundlagen zu Prädikatenlogik}
-	Prädikatenlogik (PL) \ip \markBlue{erweitert} Aussagenlogik durch Ergänzen von ``Prädikaten'', einer Art von Funktionen, die Wahrheitswerte zurückgeben.
+\section{Praedikatenlogik}
+\begin{frame}{Grundlagen zu Praedikatenlogik}
+	Praedikatenlogik (PL) \ip \markBlue{erweitert} Aussagenlogik durch Ergaenzen von ``Praedikaten'', einer Art von Funktionen, die Wahrheitswerte zurückgeben.
 
-	Alphabet der Prädikatenlogik:
+	Alphabet der Praedikatenlogik:
 	
 	\begin{itemize}
 		\pitem $\lnot, \land, \lor, \rightarrow, \leftrightarrow, (, )$, also Alphabet der Aussagenlogik.
@@ -36,13 +35,13 @@ https://github.com/weisJ/Mima
 		\pitem $x,y,z,x_i \in Var_{PL}$ Variablen
 		\pitem $c, d, c_i \in Const_{PL}$ Konstanten
 		\pitem $f, g, h, f_i \in Fun_{PL}$ Funktionen 
-		\pitem $R, S, R_i \in Rel_{PL}$ Relationen (funktionieren ähnlich wie Funktionen)
+		\pitem $R, S, R_i \in Rel_{PL}$ Relationen (funktionieren aehnlich wie Funktionen)
 		\pitem $\objequiv$ Objektgleichheit
 		\pitem $,$ Komma
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Gliederung der Prädikatenlogik}
+\begin{frame}{Gliederung der Praedikatenlogik}
 	\begin{block}{Terme}
 		Ein Term ist ein Element aus der Sprache über $A_{Ter} := \{\markBlue{(}, \markBlue{)}, \markBlue{,}\} \cup Var_{PL} \cup Const_{PL} \cup Fun_{PL}$.
 	\end{block}
@@ -62,7 +61,7 @@ https://github.com/weisJ/Mima
 	%\bp
 \end{frame}
 
-\begin{frame}{Verständnis von Termen, Atomaren Formeln, Stelligkeit}
+\begin{frame}{Verstaendnis von Termen, Atomaren Formeln, Stelligkeit}
 \begin{itemize}
 	\item Woraus kann ein Term bestehen? \pause
 	\item[$\rightarrow$] Aus Klammern $\markBlue{(}, \markBlue{)}$, Kommas $\markBlue{,}$, Variablen, Konstanten, Funktionen.\pause
@@ -72,8 +71,8 @@ https://github.com/weisJ/Mima
 \end{itemize}	
 \end{frame}
 
-\begin{frame}{Grammatik der Prädikatenlogik}
-	Prädikatenlogische Formeln werden durch die Grammatik $G := (N_{Ter}, A_{Ter}, T, P_{Ter})$ erzeugt mit:
+\begin{frame}{Grammatik der Praedikatenlogik}
+	Praedikatenlogische Formeln werden durch die Grammatik $G := (N_{Ter}, A_{Ter}, T, P_{Ter})$ erzeugt mit:
 	
 	\bp
 	
@@ -96,7 +95,7 @@ https://github.com/weisJ/Mima
 	Beispiel: Seien Funktionen $f,g$ mit $ar(f) = 2, ar(g) = 1$, Konstante $c$ und Variablen $x,y$ gegeben. Was kann man damit machen?
 \end{frame}
 
-\begin{frame}{Grammatik der Prädikatenlogik}
+\begin{frame}{Grammatik der Praedikatenlogik}
 	
 	
 	\begin{columns}
@@ -124,7 +123,7 @@ https://github.com/weisJ/Mima
 		\begin{column}{0.4\textwidth}
 			\bp
 			
-			\begin{taskblock}{Aufgabe zu Grammatiken und Prädikatenlogik}
+			\begin{taskblock}{Aufgabe zu Grammatiken und Praedikatenlogik}
 				Welche dieser Formeln entsprechen dieser Grammatik?
 				\vspace{.2cm}
 				\begin{itemize}
@@ -135,29 +134,29 @@ https://github.com/weisJ/Mima
 					\pitem $g(c, f)c)$
 				\end{itemize}
 			
-				\ip Bilde die Ableitungsbäume zu den korrekten Formeln.
+				\ip Bilde die Ableitungsbaeume zu den korrekten Formeln.
 			\end{taskblock}
 		\end{column}
 	\end{columns}
 \end{frame}
 
-\begin{frame}{Bindungsstärken}
-	\begin{block}{Bindungsstärke}
-		Verschiedene Operanden ``binden'' stärker als andere. \ip Wenn ein Operand stärker als die umliegenden Operanden bindet, tritt derselbe Effekt auf, wie wenn Klammerung geschehen würde.
+\begin{frame}{Bindungsstaerken}
+	\begin{block}{Bindungsstaerke}
+		Verschiedene Operanden ``binden'' staerker als andere. \ip Wenn ein Operand staerker als die umliegenden Operanden bindet, tritt derselbe Effekt auf, wie wenn Klammerung geschehen würde.
 	\end{block}
 
 	\bp
 	
-	Bindungsstärken absteigend:
+	Bindungsstaerken absteigend:
 	\begin{itemize}
 		\ip \item $\forall / \exists\ip,\lnot\ip,\land\ip,\lor\ip,\rightarrow/\leftarrow\ip,\leftrightarrow$
 	\end{itemize}
 
 	\bp
 	
-	Finde äquivalente Formeln, die mit möglichst wenig Klammern auskommen:
+	Finde aequivalente Formeln, die mit möglichst wenig Klammern auskommen:
 	\begin{itemize}
-		\pitem $\exists x \forall y (R(f(x), g(x)) \lor \forall z R(c, x)$ %TODO finish
+        \pitem $\exists x \forall y (R(f(x), g(x))) \lor \forall z R(c, x)$ %TODO finish
 	\end{itemize}
 
 \end{frame}
@@ -190,7 +189,7 @@ https://github.com/weisJ/Mima
 		\pitem Variablen, die nicht im Wirkungsbereich eines Quantors liegen, nennt man \markGreen{frei}.
 	\end{itemize}
 
-	\bp Überschattung ist möglich, durch Quantoren definierte Variablen beziehen sich immer auf den \markBlue{nächsten} Quantor.
+	\bp Überschattung ist möglich, durch Quantoren definierte Variablen beziehen sich immer auf den \markBlue{naechsten} Quantor.
 	\begin{itemize}
 		\pitem Ist $\forall x (p(x) \land \forall x (\lnot p(x))))$ erfüllbar?
 		\pause\item Ja: $\forall x (p(x) \land \forall \hat{x} (\lnot p(\hat{x}))))$ 
@@ -240,8 +239,8 @@ Sind folgende Substitutionen kollisionsfrei?
 \end{frame}
 
 
-\begin{frame}{Semantik von prädikatenlogischen Formeln}
-	Um prädikatenlogische Formeln zu interpretieren, brauchen wir einige neue Mengen:
+\begin{frame}{Semantik von praedikatenlogischen Formeln}
+	Um praedikatenlogische Formeln zu interpretieren, brauchen wir einige neue Mengen:
 	
 	\begin{itemize}
 		\pitem Interpretation $(D, I)$\ip, bestehend aus...
@@ -262,13 +261,13 @@ Sind folgende Substitutionen kollisionsfrei?
 		
 		\bp
 		
-		\item Damit können wir prädikatenlogische Formeln definieren!
+		\item Damit können wir praedikatenlogische Formeln definieren!
 	\end{itemize}
 	
 	\p
 	
 	\begin{block}{$\pval$}
-		Die Funktion $\pval : L_{Ter} \cup L_{For} \rightarrow D \cup \B$ weißt einer prädikatenlogischen Formel eine Bedeutung 
+		Die Funktion $\pval : L_{Ter} \cup L_{For} \rightarrow D \cup \B$ weißt einer praedikatenlogischen Formel eine Bedeutung 
 		(Wahrheitsgehalt für Formeln und Element des Universums für Terme) zu.
 	\end{block}
 \end{frame}
@@ -303,7 +302,7 @@ Sind folgende Substitutionen kollisionsfrei?
 		
 		\pause
 		\begin{itemize}
-			\item Wähle $y = 8 \in \N_0$. \ip Dann: $I(q(8,7)) = w\ip, I(p(8)) = w$\ip, also $\pval(\exists y (q(y,x) \land p(y))) = w$\ip, und $\pval(T_1) = w$.
+			\item Waehle $y = 8 \in \N_0$. \ip Dann: $I(q(8,7)) = w\ip, I(p(8)) = w$\ip, also $\pval(\exists y (q(y,x) \land p(y))) = w$\ip, und $\pval(T_1) = w$.
 		\end{itemize}
 		
 		\pause
@@ -320,52 +319,52 @@ Sind folgende Substitutionen kollisionsfrei?
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Aufgaben zu Prädikatenlogik}
-	\begin{taskblock}{Aufgaben zu Prädikatenlogik}
-		Gegeben sind folgende Prädikate:
+\begin{frame}{Aufgaben zu Praedikatenlogik}
+	\begin{taskblock}{Aufgaben zu Praedikatenlogik}
+		Gegeben sind folgende Praedikate:
 		\begin{itemize}
 			\item $Vater(x,y) := $ wahr, gdw. $x$ Vater von $y$ ist, analog $Mutter(x,y)$.
-			\item $Männlich(x) := $ wahr, gdw. $x$ männlich ist, analog $Weiblich(x)$.
+			\item $Maennlich(x) := $ wahr, gdw. $x$ maennlich ist, analog $Weiblich(x)$.
 			\item $Verheiratet(x,y) := $ wahr, gdw. $x$ und $y$ verheiratet sind.
 		\end{itemize}
 	
 	
-		Drücke die folgenden Aussagen mit prädikatenlogischen Formeln aus:
+		Drücke die folgenden Aussagen mit praedikatenlogischen Formeln aus:
 		
 		\begin{itemize}
-			\pitem Jede männliche Person hat eine Mutter.
+			\pitem Jede maennliche Person hat eine Mutter.
 			\begin{itemize}
-				\pause\item $\forall x \exists y (Männlich(x) \rightarrow Mutter(y,x))$
+				\pause\item $\forall x \exists y (Maennlich(x) \rightarrow Mutter(y,x))$
 				\pause\item Kann eine Person jetzt auch mehr als eine Mutter haben? \pause Widerspricht das der ursprünglichen Aussage?
 			\end{itemize}
 			\pitem Jeder Mann hat Kinder (plural!).
 			\begin{itemize}
-				\pause\item $\forall x \exists y \exists z (Männlich(x) \rightarrow ( Vater(x,y) \land Vater(x,z) \land \lnot (y \objequiv z)))$
+				\pause\item $\forall x \exists y \exists z (Maennlich(x) \rightarrow ( Vater(x,y) \land Vater(x,z) \land \lnot (y \objequiv z)))$
 			\end{itemize}
 		\end{itemize}
 	\end{taskblock}
 \end{frame}
 
-\begin{frame}{Aufgaben zu Prädikatenlogik}
-	\begin{taskblock}{Aufgaben zu Prädikatenlogik}
-		Gegeben sind folgende Prädikate:
+\begin{frame}{Aufgaben zu Praedikatenlogik}
+	\begin{taskblock}{Aufgaben zu Praedikatenlogik}
+		Gegeben sind folgende Praedikate:
 		\begin{itemize}
 			\item $Vater(x,y) := $ wahr, gdw. $x$ Vater von $y$ ist, analog $Mutter(x,y)$.
-			\item $Männlich(x) := $ wahr, gdw. $x$ männlich ist, analog $Weiblich(x)$.
+			\item $Maennlich(x) := $ wahr, gdw. $x$ maennlich ist, analog $Weiblich(x)$.
 			\item $Verheiratet(x,y) := $ wahr, gdw. $x$ und $y$ verheiratet sind.
 		\end{itemize}
 		
 		
-		Drücke die folgenden Aussagen mit prädikatenlogischen Formeln aus:
+		Drücke die folgenden Aussagen mit praedikatenlogischen Formeln aus:
 		
 		\begin{itemize}
 			\pitem Jede Frau ist mit höchstens einem Mann verheiratet.
 			\begin{itemize}
-				\pause\item $\forall x \forall y \forall z (Weiblich(x) \land((Männlich(y) \land Männlich(z) \land \lnot (y \objequiv z) \land Verheiratet(x,y)) \rightarrow \lnot Verheiratet(x,z)))$
+				\pause\item $\forall x \forall y \forall z (Weiblich(x) \land((Maennlich(y) \land Maennlich(z) \land \lnot (y \objequiv z) \land Verheiratet(x,y)) \rightarrow \lnot Verheiratet(x,z)))$
 			\end{itemize}
-			\pitem Wer männlich ist, ist nicht weiblich und umgekehrt.
+			\pitem Wer maennlich ist, ist nicht weiblich und umgekehrt.
 			\begin{itemize}
-				\pause\item $\forall x (Männlich(x) \rightarrow \lnot Weiblich(x) \land Weiblich(x) \rightarrow \lnot Männlich(x))$
+				\pause\item $\forall x (Maennlich(x) \rightarrow \lnot Weiblich(x) \land Weiblich(x) \rightarrow \lnot Maennlich(x))$
 			\end{itemize}
 		\end{itemize}
 	\end{taskblock}
